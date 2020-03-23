@@ -5,7 +5,7 @@ import ProductList from '../components/Products/ProductList'
 
 
 const ProductsPage = () => {
-  const { products, loading, featuredProducts } = useContext(ProductContext);
+  const { products, loading } = useContext(ProductContext);
   console.log(products);
 
   if (loading) {
