@@ -15,11 +15,15 @@ const ProductProvider = ({ children }) => {
 
   useEffect(() => {
 
-    axios.get(`${url}/products`).then(data => console.log(data))
+    setLoading(true)
 
-    return () => {
+    axios.get(`${url}/products`).then(response => {
+      //setProducts(response.data)
+      setProducts(response.data);
+      setLoading(false);
+    })
 
-    }
+    return () => { }
   }, []);
 
 
