@@ -3,7 +3,7 @@ import { ProductContext } from '../context/products'
 
 
 const Products = () => {
-  console.log(useContext(ProductContext))
+  const { products, loading, featuredProducts } = useContext(ProductContext);
 
   return <h1>hello from products page</h1>;
 }
