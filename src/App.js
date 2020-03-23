@@ -11,7 +11,7 @@ import ErrorPage from './pages/ErrorPage';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import ProductDetails from './pages/ProductDetails';
-import Products from './pages/Products';
+import ProductsPage from './pages/ProductsPage';
 
 // -----GLOBAL COMPONENTS
 import Header from './components/Header';
@@ -27,7 +27,7 @@ export default function App() {
         <Route path="/cart" component={Cart} />
         <Route path="/checkout" component={Checkout} />
         <Route path="/login" component={Login} />
-        <Route exact path="/products" component={Products} />
+        <Route exact path="/products" component={ProductsPage} />
         <Route
           path="/products/:id"
           children={<ProductDetails></ProductDetails>}>

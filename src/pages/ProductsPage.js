@@ -4,10 +4,9 @@ import Loading from '../components/Loading';
 import ProductList from '../components/Products/ProductList'
 
 
-const Products = () => {
+const ProductsPage = () => {
   const { products, loading, featuredProducts } = useContext(ProductContext);
   console.log(products);
-
 
   if (loading) {
     return <Loading />
@@ -15,8 +14,7 @@ const Products = () => {
 
   return <ProductList title="our products" products={products} />
 
-
 }
 
 
-export default Products;
+export default ProductsPage;
