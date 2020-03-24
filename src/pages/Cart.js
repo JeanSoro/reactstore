@@ -16,7 +16,6 @@ const Cart = () => {
     );
   }
 
-
   return (
     <section className="cart-items section">
       <h2>Your Cart</h2>

@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaAngleUp, FaAngleDown } from 'react-icons/fa';
 import { CartContext } from '../../context/cart';
 
 const CartItem = ({ id, image, title, price, amount }) => {
+  const { removeItemFromCart, increaseItemAmount, decreaseItemAmount } = useContext(CartContext);
   return (
     <article className="cart-item">
       <img src={image} alt={title} />
@@ -10,18 +11,18 @@ const CartItem = ({ id, image, title, price, amount }) => {
         <h4>{title}</h4>
         <h5>${price}</h5>
         <button type="button" className="cart-btn remove-btn" onClick={() => {
-          console.log('removed')
+          removeItemFromCart(id)
         }}>Remove</button>
       </div>
       <div>
         <button type="button" className="cart-btn amount-btn" onClick={() => {
-          console.log('Up arrow')
+          increaseItemAmount(id)
         }}>
           <FaAngleUp />
         </button>
         <p className="item-amount">{amount}</p>
         <button type="button" className="cart-btn amount-btn" onClick={() => {
-          console.log('down arrow')
+          decreaseItemAmount(id, amount)
         }}>
           <FaAngleDown />
         </button>

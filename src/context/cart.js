@@ -34,34 +34,51 @@ const CartProvider = ({ children }) => {
   }, [cart])
 
 
-
-
-
   //remove item
   const removeItemFromCart = id => {
+    setCart([...cart].filter(cartItem => cartItem.id !== id));
 
+    // let newCart = [...cart].filter(cartItem => cartItem.id !== id);
+    // setCart(newCart);
   }
   // **********************************************
   // **********************************************
+
   //increase item's amount
   const increaseItemAmount = id => {
+    const newCart = [...cart].map(cartItem => {
+      return cartItem.id === id ? { ...cartItem, amount: cartItem.amount + 1 } : { ...cartItem }
+    });
+    setCart(newCart);
 
   }
   // **********************************************
   // **********************************************
 
   //decrease item's amount
-  const decreaseItemAmount = id => {
+  const decreaseItemAmount = (id, amount) => {
 
+    if (amount === 1) {
+      removeItemFromCart(id);
+      return;
+    }
+    else {
+      const newCart = [...cart].map(cartItem => {
+        return cartItem.id === id ? { ...cartItem, amount: cartItem.amount - 1 } : { ...cartItem }
+      });
+      setCart(newCart);
+    }
   }
   // **********************************************
   // **********************************************
+
   //add item to cart
   const addItemToCart = product => {
 
   }
   // **********************************************
   // **********************************************
+
   //clear entire cart
   const clearCart = () => {
 
