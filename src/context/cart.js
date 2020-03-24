@@ -11,7 +11,7 @@ export const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
 
-  const [cart, setCart] = useState(localCart);
+  const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(0);
   const [cartItems, setCartItems] = useState(0);
 
@@ -74,14 +74,25 @@ const CartProvider = ({ children }) => {
 
   //add item to cart
   const addItemToCart = product => {
+    const { id, image: { url }, title, price } = product;
+    const itemAlreadyInCart = [...cart].find(cartItem => cartItem.id === id);
 
+    if (itemAlreadyInCart) {
+      increaseItemAmount(id);
+      return;
+    }
+    else {
+      const itemNotAlreadyInCart = { id, image: url, title, price, amount: 1 };
+      const newCart = [...cart, itemNotAlreadyInCart];
+      setCart(newCart);
+    }
   }
   // **********************************************
   // **********************************************
 
   //clear entire cart
   const clearCart = () => {
-
+    setCart([]);
   }
 
 
