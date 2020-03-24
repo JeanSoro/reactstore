@@ -22,11 +22,11 @@ export default function ProductDetails() {
       <Loading />
     )
   } else {
-    const { image: { url }, title, price, description } = singleProduct;
+    const { image, title, price, description } = singleProduct;
 
     return (
       <section className="single-product">
-        <img src={url} alt={title} className="single-product-image" />
+        <img src={image} alt={title} className="single-product-image" />
         <article>
           <h1>{title}</h1>
           <h2>${price}</h2>

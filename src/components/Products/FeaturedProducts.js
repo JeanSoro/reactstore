@@ -5,14 +5,14 @@ import Loading from '../Loading';
 
 const FeaturedProducts = () => {
 
-  const { loading, featuredProducts } = useContext(ProductContext);
+  const { loading, featured } = useContext(ProductContext);
 
   if (loading) {
     return <Loading />
   }
 
   return (
-    <ProductList title="featured products" products={featuredProducts} />
+    <ProductList title="featured products" products={featured} />
   )
 }
 

@@ -79,7 +79,7 @@ const CartProvider = ({ children }) => {
 
   //add item to cart
   const addItemToCart = product => {
-    const { id, image: { url }, title, price } = product;
+    const { id, image, title, price } = product;
     const itemAlreadyInCart = [...cart].find(cartItem => cartItem.id === id);
 
     if (itemAlreadyInCart) {
@@ -87,7 +87,7 @@ const CartProvider = ({ children }) => {
       return;
     }
     else {
-      const itemNotAlreadyInCart = { id, image: url, title, price, amount: 1 };
+      const itemNotAlreadyInCart = { id, image, title, price, amount: 1 };
       const newCart = [...cart, itemNotAlreadyInCart];
       setCart(newCart);
     }

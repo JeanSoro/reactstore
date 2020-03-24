@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import url from '../utils/URL'
 
-import { getFeaturedProducts } from '../utils/helpers';
+import { getFeaturedProducts, flattenProducts } from '../utils/helpers';
 
 
 //Provider - Wraps APP, useContext() - Consume Data
@@ -15,7 +15,7 @@ const ProductProvider = ({ children }) => {
 
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState([]);
-  const [featuredProducts, setFeaturedProducts] = useState([]);
+  const [featured, setFeaturedProducts] = useState([]);
 
   useEffect(() => {
 
@@ -23,9 +23,11 @@ const ProductProvider = ({ children }) => {
 
     axios.get(`${url}/products`).then(response => {
       //setProducts(response.data)
-      const featuredProducts = getFeaturedProducts(response.data);
-      setProducts(response.data);
-      setFeaturedProducts(featuredProducts);
+      const featured = getFeaturedProducts(flattenProducts(response.data));
+
+      const products = flattenProducts(response.data);
+      setProducts(products);
+      setFeaturedProducts(featured);
       setLoading(false);
     })
 
@@ -34,7 +36,7 @@ const ProductProvider = ({ children }) => {
 
 
   return (
-    <ProductContext.Provider value={{ products, loading, featuredProducts }}>
+    <ProductContext.Provider value={{ products, loading, featured }}>
       {children}
     </ProductContext.Provider>
   )
