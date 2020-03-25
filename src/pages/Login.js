@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useHistory } from 'react-router-dom';
-import { UserContext } from '../context/user'
+import { UserContext } from '../context/user';
 
 // strapi functions
 

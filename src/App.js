@@ -15,12 +15,13 @@ import ProductsPage from './pages/ProductsPage';
 
 // -----GLOBAL COMPONENTS
 import Header from './components/Header';
-
+import Alert from './components/Alert';
 
 export default function App() {
   return (
     <Router>
       <Header />
+      <Alert />
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/about" component={About} />
