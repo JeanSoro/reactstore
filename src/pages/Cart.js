@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import { CartContext } from '../context/cart';
+import { UserContext } from '../context/user';
 import EmptyCart from '../components/Cart/EmptyCart';
 import CartItem from '../components/Cart/CartItem';
 import { Link } from 'react-router-dom';
-// import {UserContext} from '../context/user'
 
 const Cart = () => {
 
-  let user = false;
+  let { user } = useContext(UserContext);
   const { cart, total } = useContext(CartContext);
 
   if (cart.length === 0) {
@@ -23,7 +23,7 @@ const Cart = () => {
         return <CartItem key={item.id} {...item} />
       })}
       <h2>Total: $ {total}</h2>
-      {user ?
+      {user.token ?
         <Link to="/checkout" className="btn btn-primary btn-block">Check Out Page</Link>
         :
         <Link to="/login" className="btn btn-primary btn-block">Login Page</Link>

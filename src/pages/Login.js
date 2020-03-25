@@ -11,7 +11,7 @@ import registerUser from '../strapi/registerUser';
 const Login = () => {
   const history = useHistory();
 
-  const { userLogin } = useContext(UserContext);
+  const { userLogin, alert, showAlert } = useContext(UserContext);
 
 
   //state values 
@@ -21,7 +21,7 @@ const Login = () => {
   const [isMember, setIsMember] = useState(true);
   const [forgotPassword, setForgotPassword] = useState(false);
 
-  let isEmpty = !email || !password || !username;
+  let isEmpty = !email || !password || !username || alert.show;
 
   const toggleMember = () => {
     setIsMember((prevMember) => {
@@ -33,6 +33,7 @@ const Login = () => {
   }
 
   const handleSubmit = async (e) => {
+    showAlert({ msg: `Please wait, accessing user's data...` })
     //alert
     e.preventDefault();
     let response;
@@ -48,10 +49,12 @@ const Login = () => {
       const { jwt: token, user: { username } } = response.data;
       const newUser = { token, username };
       userLogin(newUser);
+      showAlert({ msg: `Successfully logged in ${username}, Thank you` })
       history.push('/products')
       console.log(response)
     } else {
       //show alert
+      showAlert({ msg: 'There was an error, please try again...', type: 'danger' })
     }
   }
 
