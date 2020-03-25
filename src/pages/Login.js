@@ -1,9 +1,13 @@
 import React, { useContext, useState } from "react";
 import { useHistory } from 'react-router-dom';
 
+// strapi functions
+
+import loginUser from '../strapi/loginUser';
+import registerUser from '../strapi/registerUser';
+
 const Login = () => {
   const history = useHistory();
-
 
   //state values 
 
@@ -12,14 +16,34 @@ const Login = () => {
   const [username, setUsername] = useState('default');
   const [isMember, setIsMember] = useState(true);
 
-  let isEmpty = false;
+  let isEmpty = !email || !password || !username;
 
   const toggleMember = () => {
+    setIsMember((prevMember) => {
+      let isMember = !prevMember;
+      isMember ? setUsername('default') : setUsername('');
+      return isMember;
+    })
 
   }
 
   const handleSubmit = async (e) => {
+    //alert
     e.preventDefault();
+    let response;
+
+    if (isMember) {
+      //response = await loginUser
+    }
+    else {
+      // response = await registerUser
+    }
+
+    if (response) {
+      //
+    } else {
+      //show alert
+    }
   }
 
   return (
