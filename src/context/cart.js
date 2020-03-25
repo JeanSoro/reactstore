@@ -3,8 +3,6 @@
 //***************************** products context
 
 import React, { useState, useEffect, createContext } from 'react';
-// import axios from 'axios';
-// import url from '../utils/URL'
 import localCart from '../utils/localCart';
 
 let getCartFromLocalStorage = () => {

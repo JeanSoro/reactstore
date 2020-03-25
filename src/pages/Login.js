@@ -1,20 +1,25 @@
 import React, { useContext, useState } from "react";
 import { useHistory } from 'react-router-dom';
+import { UserContext } from '../context/user'
 
 // strapi functions
 
 import loginUser from '../strapi/loginUser';
 import registerUser from '../strapi/registerUser';
 
+
 const Login = () => {
   const history = useHistory();
 
-  //state values 
+  const { userLogin } = useContext(UserContext);
 
+
+  //state values 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('default');
   const [isMember, setIsMember] = useState(true);
+  const [forgotPassword, setForgotPassword] = useState(false);
 
   let isEmpty = !email || !password || !username;
 
@@ -33,16 +38,17 @@ const Login = () => {
     let response;
 
     if (isMember) {
-      //response = await loginUser
+      response = await loginUser({ email, password })
     }
     else {
       response = await registerUser({ email, password, username })
-
     }
 
     if (response) {
-      //
-      console.log('success');
+      const { jwt: token, user: { username } } = response.data;
+      const newUser = { token, username };
+      userLogin(newUser);
+      history.push('/products')
       console.log(response)
     } else {
       //show alert
@@ -89,11 +95,17 @@ const Login = () => {
           </button>
         }
 
+
+
         {/* REGISTER LINK */}
         <p className="register-link">
-          {isMember ? "need to register" : "already a member"}
+          {isMember ? "need to register" : "already a member ?"}
           <button type="button" onClick={toggleMember}>Click here</button>
         </p>
+        {/* <p className="register-link">
+          {isMember ? "forgot password" : "already a member ?"}
+          <button type="button" onClick={() => { setForgotPassword(true) }}>Click here</button>
+        </p> */}
       </form>
     </section>
   );
