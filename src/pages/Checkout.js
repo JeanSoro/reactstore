@@ -21,7 +21,21 @@ const Checkout = (props) => {
   const isEmpty = !name || alert.show;
 
   const handleSubmit = async (e) => {
+    showAlert({msg: 'submitting order... please wait'});
     e.preventDefault();
+    const response = await props.stripe
+      .createToken()
+      .catch(error => console.log(error))
+
+    const {token} = response;
+
+    //if token exists
+    if(token){
+
+    } else{
+      hideAlert();
+      setError(response.error.message);
+    }
 
   }
 
