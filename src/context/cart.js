@@ -15,7 +15,7 @@ export const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
 
-  const [cart, setCart] = useReducer(reducer, getCartFromLocalStorage());
+  const [cart, dispatch] = useReducer(reducer, getCartFromLocalStorage());
   const [total, setTotal] = useState(0);
   const [cartItems, setCartItems] = useState(0);
 
@@ -41,6 +41,12 @@ const CartProvider = ({ children }) => {
 
   //remove item
   const removeItemFromCart = id => {
+
+    dispatch({
+      type: "REMOVE",
+      payload: id
+    })
+
     // setCart([...cart].filter(cartItem => cartItem.id !== id));
 
     // let newCart = [...cart].filter(cartItem => cartItem.id !== id);
@@ -51,6 +57,11 @@ const CartProvider = ({ children }) => {
 
   //increase item's amount
   const increaseItemAmount = id => {
+
+    dispatch({
+      type: 'INCREASE',
+      payload: id
+    })
     // const newCart = [...cart].map(cartItem => {
     //   return cartItem.id === id ? { ...cartItem, amount: cartItem.amount + 1 } : { ...cartItem }
     // });
@@ -63,22 +74,43 @@ const CartProvider = ({ children }) => {
   //decrease item's amount
   const decreaseItemAmount = (id, amount) => {
 
-    // if (amount === 1) {
-    //   removeItemFromCart(id);
-    //   return;
-    // }
-    // else {
-    //   const newCart = [...cart].map(cartItem => {
-    //     return cartItem.id === id ? { ...cartItem, amount: cartItem.amount - 1 } : { ...cartItem }
-    //   });
-    //   setCart(newCart);
-    // }
+    if (amount === 1) {
+      dispatch({
+        type: 'REMOVE',
+        payload: id
+      })
+      return
+    }
+    else {
+      dispatch({
+        type: 'DECREASE',
+        payload: id
+      })
+
+      // setCart(newCart);
+    }
   }
   // **********************************************
   // **********************************************
 
   //add item to cart
   const addItemToCart = product => {
+    let item = [...cart].find(cartItem => cartItem.id === product.id);
+
+    if (item) {
+      dispatch({
+        type: 'INCREASE',
+        payload: product.id
+      })
+    } else {
+
+      dispatch({
+        type: 'ADD_TO_CART',
+        payload: product
+      })
+
+    }
+
     // const { id, image, title, price } = product;
     // const itemAlreadyInCart = [...cart].find(cartItem => cartItem.id === id);
 
@@ -97,7 +129,9 @@ const CartProvider = ({ children }) => {
 
   //clear entire cart
   const clearCart = () => {
-    // setCart([]);
+    dispatch({
+      type: 'CLEAR_CART'
+    })
   }
 
 
