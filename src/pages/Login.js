@@ -19,7 +19,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('default');
   const [isMember, setIsMember] = useState(true);
-  const [forgotPassword, setForgotPassword] = useState(false);
+  // const [forgotPassword, setForgotPassword] = useState(false);
 
   let isEmpty = !email || !password || !username || alert.show;
 

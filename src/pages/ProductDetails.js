@@ -11,7 +11,6 @@ export default function ProductDetails() {
   const history = useHistory();
 
   const { products } = useContext(ProductContext);
-
   const { addItemToCart } = useContext(CartContext);
 
   const singleProduct = products.find(product => product.id === parseInt(id));

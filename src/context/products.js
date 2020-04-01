@@ -1,6 +1,6 @@
 //***************************** products context
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import axios from 'axios';
 import url from '../utils/URL'
 
@@ -8,7 +8,7 @@ import { getFeaturedProducts, flattenProducts } from '../utils/helpers';
 
 
 //Provider - Wraps APP, useContext() - Consume Data
-export const ProductContext = React.createContext();
+export const ProductContext = createContext();
 
 
 const ProductProvider = ({ children }) => {
