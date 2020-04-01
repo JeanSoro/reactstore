@@ -1,5 +1,5 @@
 // user context
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext, useEffect } from 'react';
 export const UserContext = createContext();
 
 
@@ -18,6 +18,21 @@ const UserProvider = ({ children }) => {
   // initial state values
   const [user, setUser] = useState(getUserFromLocalStorage());
   const [alert, setAlert] = useState({ show: false, msg: '', type: 'success' });
+  const [height, setHeight] = useState(0);
+
+  // ************************************************* //
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      setHeight(window.pageYOffset);
+    })
+
+    return () => {
+      window.removeEventListener('scroll', () => { })
+    }
+
+
+  }, [])
 
   // ************************************************* //
 
@@ -45,7 +60,7 @@ const UserProvider = ({ children }) => {
   // ************************************************* //
 
   return (
-    <UserContext.Provider value={{ user, userLogin, userLogout, alert, showAlert, hideAlert }}>
+    <UserContext.Provider value={{ height, user, userLogin, userLogout, alert, showAlert, hideAlert }}>
       {children}
     </UserContext.Provider>
   );
