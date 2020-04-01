@@ -5,7 +5,7 @@ import url from './URL';
 export const flattenProducts = (data) => {
   return data.map(item => {
     //cloudinary
-    let image = item.image.url;
+    let image = (item.image && item.image.url) || null;
 
     //local deployment
     // let image = `${url}${item.image.url}`;
