@@ -2,18 +2,20 @@
 
 //***************************** products context
 
-import React, { useState, useEffect, createContext } from 'react';
+import React, { useState, useEffect, createContext, useReducer } from 'react';
 import localCart from '../utils/localCart';
+import reducer from './reducer';
 
 let getCartFromLocalStorage = () => {
   return localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
 }
 
+
 export const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
 
-  const [cart, setCart] = useState(getCartFromLocalStorage());
+  const [cart, setCart] = useReducer(reducer, getCartFromLocalStorage());
   const [total, setTotal] = useState(0);
   const [cartItems, setCartItems] = useState(0);
 
@@ -39,7 +41,7 @@ const CartProvider = ({ children }) => {
 
   //remove item
   const removeItemFromCart = id => {
-    setCart([...cart].filter(cartItem => cartItem.id !== id));
+    // setCart([...cart].filter(cartItem => cartItem.id !== id));
 
     // let newCart = [...cart].filter(cartItem => cartItem.id !== id);
     // setCart(newCart);
@@ -49,10 +51,10 @@ const CartProvider = ({ children }) => {
 
   //increase item's amount
   const increaseItemAmount = id => {
-    const newCart = [...cart].map(cartItem => {
-      return cartItem.id === id ? { ...cartItem, amount: cartItem.amount + 1 } : { ...cartItem }
-    });
-    setCart(newCart);
+    // const newCart = [...cart].map(cartItem => {
+    //   return cartItem.id === id ? { ...cartItem, amount: cartItem.amount + 1 } : { ...cartItem }
+    // });
+    // setCart(newCart);
 
   }
   // **********************************************
@@ -61,41 +63,41 @@ const CartProvider = ({ children }) => {
   //decrease item's amount
   const decreaseItemAmount = (id, amount) => {
 
-    if (amount === 1) {
-      removeItemFromCart(id);
-      return;
-    }
-    else {
-      const newCart = [...cart].map(cartItem => {
-        return cartItem.id === id ? { ...cartItem, amount: cartItem.amount - 1 } : { ...cartItem }
-      });
-      setCart(newCart);
-    }
+    // if (amount === 1) {
+    //   removeItemFromCart(id);
+    //   return;
+    // }
+    // else {
+    //   const newCart = [...cart].map(cartItem => {
+    //     return cartItem.id === id ? { ...cartItem, amount: cartItem.amount - 1 } : { ...cartItem }
+    //   });
+    //   setCart(newCart);
+    // }
   }
   // **********************************************
   // **********************************************
 
   //add item to cart
   const addItemToCart = product => {
-    const { id, image, title, price } = product;
-    const itemAlreadyInCart = [...cart].find(cartItem => cartItem.id === id);
+    // const { id, image, title, price } = product;
+    // const itemAlreadyInCart = [...cart].find(cartItem => cartItem.id === id);
 
-    if (itemAlreadyInCart) {
-      increaseItemAmount(id);
-      return;
-    }
-    else {
-      const itemNotAlreadyInCart = { id, image, title, price, amount: 1 };
-      const newCart = [...cart, itemNotAlreadyInCart];
-      setCart(newCart);
-    }
+    // if (itemAlreadyInCart) {
+    //   increaseItemAmount(id);
+    //   return;
+    // }
+    // else {
+    //   const itemNotAlreadyInCart = { id, image, title, price, amount: 1 };
+    //   const newCart = [...cart, itemNotAlreadyInCart];
+    //   setCart(newCart);
+    // }
   }
   // **********************************************
   // **********************************************
 
   //clear entire cart
   const clearCart = () => {
-    setCart([]);
+    // setCart([]);
   }
 
 
