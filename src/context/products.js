@@ -17,6 +17,16 @@ const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [featured, setFeaturedProducts] = useState([]);
 
+  //extra state values
+  const [sorted, setSorted] = useState([]);
+  const [page, setPage] = useState(0);
+  const [filters, setFilters] = useState({
+    search: '',
+    category: 'all',
+    shipping: false,
+    price: 'all'
+  });
+
   useEffect(() => {
 
     setLoading(true)
@@ -24,8 +34,9 @@ const ProductProvider = ({ children }) => {
     axios.get(`${url}/products`).then(response => {
       //setProducts(response.data)
       const featured = getFeaturedProducts(flattenProducts(response.data));
-
       const products = flattenProducts(response.data);
+
+      setSorted(products);
       setProducts(products);
       setFeaturedProducts(featured);
       setLoading(false);
@@ -34,9 +45,21 @@ const ProductProvider = ({ children }) => {
     return () => { }
   }, []);
 
+  // -------------------------------------------------------------------------------
+
+  const changePage = index => {
+    console.log(index)
+  }
+
+  const updateFilters = e => {
+    console.log(e);
+  }
+
+
+  // -------------------------------------------------------------------------------
 
   return (
-    <ProductContext.Provider value={{ products, loading, featured }}>
+    <ProductContext.Provider value={{ products, loading, featured, sorted, page, filters, changePage, updateFilters }}>
       {children}
     </ProductContext.Provider>
   )
