@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types'
 import img from '../../assets/mainBcg.jpeg';
 
-
 const Product = ({ image, title, id, price }) => {
 
   return (

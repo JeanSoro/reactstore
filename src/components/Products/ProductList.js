@@ -3,7 +3,6 @@ import Product from './Product';
 
 const ProductList = ({ title, products }) => {
 
-
   return (
     <section className="section">
       <h2 className="section-title">

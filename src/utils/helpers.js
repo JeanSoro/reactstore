@@ -13,7 +13,6 @@ export const flattenProducts = (data) => {
   })
 }
 
-
 // helper functions
 
 export const getFeaturedProducts = (data) => {
@@ -21,13 +20,9 @@ export const getFeaturedProducts = (data) => {
 }
 
 export const paginate = products => {
-  //code goes here
+
   const productsPerPage = 4;
   const numberOfPages = Math.ceil(products.length / productsPerPage);
-
-  // const newProducts = Array.from({ length: numberOfPages }, () => {
-  //   return products.splice(0, productsPerPage)
-  // })
 
   //non destructive slice
   const newProducts = Array.from({ length: numberOfPages }, (_, index) => {
@@ -35,7 +30,6 @@ export const paginate = products => {
     const start = index * productsPerPage
     return products.slice(start, start + productsPerPage)
   })
-
 
   return newProducts;
 }
