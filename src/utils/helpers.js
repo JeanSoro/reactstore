@@ -19,3 +19,16 @@ export const flattenProducts = (data) => {
 export const getFeaturedProducts = (data) => {
   return data.filter(item => item.featured === true)
 }
+
+export const paginate = products => {
+  //code goes here
+  const productsPerPage = 4;
+  const numberOfPages = Math.ceil(products.length / productsPerPage);
+
+  const newProducts = Array.from({ length: numberOfPages }, () => {
+    return products.splice(0, productsPerPage)
+  })
+
+
+  return products;
+}

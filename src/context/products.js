@@ -4,7 +4,7 @@ import React, { useState, useEffect, createContext } from 'react';
 import axios from 'axios';
 import url from '../utils/URL'
 
-import { getFeaturedProducts, flattenProducts } from '../utils/helpers';
+import { getFeaturedProducts, flattenProducts, paginate } from '../utils/helpers';
 
 
 //Provider - Wraps APP, useContext() - Consume Data
@@ -36,7 +36,7 @@ const ProductProvider = ({ children }) => {
       const featured = getFeaturedProducts(flattenProducts(response.data));
       const products = flattenProducts(response.data);
 
-      setSorted(products);
+      setSorted(paginate(products));
       setProducts(products);
       setFeaturedProducts(featured);
       setLoading(false);
