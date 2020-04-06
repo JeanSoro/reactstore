@@ -25,10 +25,17 @@ export const paginate = products => {
   const productsPerPage = 4;
   const numberOfPages = Math.ceil(products.length / productsPerPage);
 
-  const newProducts = Array.from({ length: numberOfPages }, () => {
-    return products.splice(0, productsPerPage)
+  // const newProducts = Array.from({ length: numberOfPages }, () => {
+  //   return products.splice(0, productsPerPage)
+  // })
+
+  //non destructive slice
+  const newProducts = Array.from({ length: numberOfPages }, (_, index) => {
+
+    const start = index * productsPerPage
+    return products.slice(start, start + productsPerPage)
   })
 
 
-  return products;
+  return newProducts;
 }
