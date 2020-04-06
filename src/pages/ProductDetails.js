@@ -16,6 +16,7 @@ export default function ProductDetails() {
   const singleProduct = products.find(product => product.id === parseInt(id));
 
 
+
   if (singleProduct.length === 0) {
     return (
       <Loading />

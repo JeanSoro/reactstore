@@ -5,10 +5,13 @@
 import React, { useState, useEffect, createContext, useReducer } from 'react';
 import localCart from '../utils/localCart';
 import reducer from './reducer';
+import { CartActionTypes } from './actions';
 
 let getCartFromLocalStorage = () => {
   return localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
 }
+
+
 
 
 export const CartContext = createContext();
@@ -43,7 +46,7 @@ const CartProvider = ({ children }) => {
   const removeItemFromCart = id => {
 
     dispatch({
-      type: "REMOVE",
+      type: CartActionTypes.REMOVE,
       payload: id
     })
 
@@ -59,7 +62,7 @@ const CartProvider = ({ children }) => {
   const increaseItemAmount = id => {
 
     dispatch({
-      type: 'INCREASE',
+      type: CartActionTypes.INCREASE,
       payload: id
     })
     // const newCart = [...cart].map(cartItem => {
@@ -76,14 +79,14 @@ const CartProvider = ({ children }) => {
 
     if (amount === 1) {
       dispatch({
-        type: 'REMOVE',
+        type: CartActionTypes.REMOVE,
         payload: id
       })
       return
     }
     else {
       dispatch({
-        type: 'DECREASE',
+        type: CartActionTypes.DECREASE,
         payload: id
       })
 
@@ -99,13 +102,13 @@ const CartProvider = ({ children }) => {
 
     if (item) {
       dispatch({
-        type: 'INCREASE',
+        type: CartActionTypes.INCREASE,
         payload: product.id
       })
     } else {
 
       dispatch({
-        type: 'ADD_TO_CART',
+        type: CartActionTypes.ADD_TO_CART,
         payload: product
       })
 
@@ -130,7 +133,7 @@ const CartProvider = ({ children }) => {
   //clear entire cart
   const clearCart = () => {
     dispatch({
-      type: 'CLEAR_CART'
+      type: CartActionTypes.CLEAR_CART
     })
   }
 
