@@ -52,8 +52,20 @@ const ProductProvider = ({ children }) => {
   }
 
   const updateFilters = e => {
-    console.log(e.target.name);
-    console.log(e.target.value);
+    const type = e.target.type;
+    const filter = e.target.name;
+    const value = e.target.value;
+    let filterValue;
+    if (type === 'checkbox') {
+      filterValue = e.target.checked;
+    } else if (type === 'radio') {
+      value === 'all' ? (filterValue = value) : (filterValue = parseInt(value))
+    } else {
+      filterValue = value
+    }
+    setFilters({ ...filters, [filter]: filterValue });
+
+
   }
 
   // -------------------------------------------------------------------------------
