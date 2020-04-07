@@ -47,6 +47,19 @@ const ProductProvider = ({ children }) => {
 
   // -------------------------------------------------------------------------------
 
+  useEffect(() => {
+
+    let newProducts = [...products].sort((a, b) => {
+      a.price - b.price
+    });
+
+
+
+    //getting default values
+    setPage(0);
+    setSorted(paginate(newProducts))
+  }, [filters, products]);
+
   const changePage = index => {
     setPage(index)
   }
