@@ -875,7 +875,7 @@ Filters Section
 
 .filters-section hr {
   border: none;
-  border-top: 0.5px solid var(--mainBlack);
+  border-top: 1px solid var(--mainBlack);
 }
 
 .search-errors {

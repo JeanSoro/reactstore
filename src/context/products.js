@@ -42,7 +42,7 @@ const ProductProvider = ({ children }) => {
       setLoading(false);
     })
 
-    return () => { }
+    // return () => { }
   }, []);
 
   // -------------------------------------------------------------------------------
@@ -52,7 +52,8 @@ const ProductProvider = ({ children }) => {
   }
 
   const updateFilters = e => {
-    console.log(e);
+    console.log(e.target.name);
+    console.log(e.target.value);
   }
 
   // -------------------------------------------------------------------------------
