@@ -1,18 +1,14 @@
-// cart context
 
-//***************************** products context
+//***************************** cart context
 
 import React, { useState, useEffect, createContext, useReducer } from 'react';
-import localCart from '../utils/localCart';
+// import localCart from '../utils/localCart';
 import reducer from './reducer';
 import { CartActionTypes } from './actions';
 
 let getCartFromLocalStorage = () => {
   return localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
-}
-
-
-
+};
 
 export const CartContext = createContext();
 
@@ -40,7 +36,6 @@ const CartProvider = ({ children }) => {
     setTotal(newCartTotal)
 
   }, [cart])
-
 
   //remove item
   const removeItemFromCart = id => {
@@ -136,7 +131,6 @@ const CartProvider = ({ children }) => {
       type: CartActionTypes.CLEAR_CART
     })
   }
-
 
   return (
     <CartContext.Provider value={

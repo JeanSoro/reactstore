@@ -1,8 +1,9 @@
 import url from './URL';
 
-//flatten
+// helper functions
 
-export const flattenProducts = (data) => {
+//flatten
+export const flattenProducts = data => {
   return data.map(item => {
     //cloudinary
     let image = (item.image && item.image.url) || null;
@@ -11,13 +12,12 @@ export const flattenProducts = (data) => {
     // let image = `${url}${item.image.url}`;
     return { ...item, image };
   })
-}
+};
 
-// helper functions
 
-export const getFeaturedProducts = (data) => {
+export const getFeaturedProducts = data => {
   return data.filter(item => item.featured === true)
-}
+};
 
 export const paginate = products => {
 
@@ -32,4 +32,4 @@ export const paginate = products => {
   })
 
   return newProducts;
-}
+};

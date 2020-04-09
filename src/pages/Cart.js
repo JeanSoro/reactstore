@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 const Cart = () => {
 
-  let { user } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const { cart, total } = useContext(CartContext);
 
   if (cart.length === 0) {

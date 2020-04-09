@@ -2,11 +2,10 @@ import React, { useContext } from "react";
 import { useParams } from 'react-router-dom';
 import { ProductContext } from '../context/products';
 import { CartContext } from '../context/cart';
-
 import Loading from '../components/Loading';
 import { useHistory } from 'react-router-dom';
 
-export default function ProductDetails() {
+const ProductDetails = () => {
   let { id } = useParams();
   const history = useHistory();
 
@@ -14,8 +13,6 @@ export default function ProductDetails() {
   const { addItemToCart } = useContext(CartContext);
 
   const singleProduct = products.find(product => product.id === parseInt(id));
-
-
 
   if (singleProduct.length === 0) {
     return (
@@ -44,3 +41,5 @@ export default function ProductDetails() {
 
 
 }
+
+export default ProductDetails;
