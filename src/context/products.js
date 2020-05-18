@@ -53,8 +53,6 @@ const ProductProvider = ({ children }) => {
       return a.price - b.price
     });
 
-
-
     //getting default values
     setPage(0);
     setSorted(paginate(newProducts))
@@ -77,7 +75,6 @@ const ProductProvider = ({ children }) => {
       filterValue = value
     }
     setFilters({ ...filters, [filter]: filterValue });
-
 
   }
 

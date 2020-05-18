@@ -3,7 +3,7 @@
 
 // export default 'http://localhost:1337';
 
-export default 'https://hooks-store-api.herokuapp.com';
+export default "https://hooks-store-api.herokuapp.com";
 
 
 

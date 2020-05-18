@@ -23,9 +23,12 @@ const CartProvider = ({ children }) => {
     localStorage.setItem('cart', JSON.stringify(cart));
 
     //1----------------- Number of cart items-------------------------
-    let newCartItems = cart.reduce((accumulator, current) => {
-      return (accumulator += current.amount)
+    let newCartItems = cart.reduce((total, cartItem) => {
+
+      return (total += cartItem.amount)
+
     }, 0)
+
     setCartItems(newCartItems);
 
     //2----------------- cart Total Price for all Items----------------------------

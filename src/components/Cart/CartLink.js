@@ -5,6 +5,7 @@ import { CartContext } from '../../context/cart';
 const CartLink = () => {
 
   const { cartItems } = useContext(CartContext);
+  console.log(cartItems)
 
   return (
     <div className="cart-link-container">
