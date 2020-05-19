@@ -98,8 +98,6 @@ const Login = () => {
           </button>
         }
 
-
-
         {/* REGISTER LINK */}
         <p className="register-link">
           {isMember ? "need to register" : "already a member ?"}
