@@ -12,9 +12,6 @@ const submitOrder = async ({ name, total, items, stripeTokenId, userToken }) => 
         Authorization: `Bearer ${userToken}`
       }
     }).catch(error => console.log(error))
-
   return response
-
 }
-
 export default submitOrder;

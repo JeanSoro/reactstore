@@ -2,18 +2,13 @@
 import React, { useState, createContext, useEffect } from 'react';
 export const UserContext = createContext();
 
-
 const getUserFromLocalStorage = () => {
   return localStorage.getItem('user')
     ? JSON.parse(localStorage.getItem('user'))
     : { username: null, token: null };
-
 }
 
-
 const UserProvider = ({ children }) => {
-
-  // const [user, setUser] = useState({ username: null, toke: null });
 
   // initial state values
   const [user, setUser] = useState(getUserFromLocalStorage());
@@ -30,8 +25,6 @@ const UserProvider = ({ children }) => {
     return () => {
       window.removeEventListener('scroll', () => { })
     }
-
-
   }, [])
 
   // ************************************************* //

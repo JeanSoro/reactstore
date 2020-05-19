@@ -3,16 +3,13 @@ import { useHistory } from 'react-router-dom';
 import { UserContext } from '../context/user';
 
 // strapi functions
-
 import loginUser from '../strapi/loginUser';
 import registerUser from '../strapi/registerUser';
 
-
 const Login = () => {
+
   const history = useHistory();
-
   const { userLogin, alert, showAlert } = useContext(UserContext);
-
 
   //state values 
   const [email, setEmail] = useState('');
@@ -24,6 +21,7 @@ const Login = () => {
   let isEmpty = !email || !password || !username || alert.show;
 
   const toggleMember = () => {
+    //initial value of state = prevMember = true
     setIsMember((prevMember) => {
       let isMember = !prevMember;
       isMember ? setUsername('default') : setUsername('');
@@ -51,7 +49,7 @@ const Login = () => {
       userLogin(newUser);
       showAlert({ msg: `Successfully logged in ${username}, Thank you` })
       history.push('/products')
-      console.log(response)
+      // console.log(response)
     } else {
       //show alert
       showAlert({ msg: 'There was an error, please try again...', type: 'danger' })

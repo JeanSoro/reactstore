@@ -5,7 +5,6 @@ import { UserContext } from '../context/user';
 const Alert = () => {
 
   const { alert, hideAlert } = useContext(UserContext);
-
   let css = 'alert-container';
 
   if (alert.show) {
