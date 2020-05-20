@@ -78,7 +78,7 @@ const Filters = () => {
               value="600"
               checked={price === 600}
               onChange={updateFilters} />
-            Over $600</label>
+            Over $650</label>
         </div>
       </form>
       <h6>total products : {sorted.flat().length}</h6>
