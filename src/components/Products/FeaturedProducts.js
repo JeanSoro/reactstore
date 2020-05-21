@@ -12,7 +12,7 @@ const FeaturedProducts = () => {
   }
 
   return (
-    <ProductList title="featured products" products={featured} />
+    <ProductList title="latest products" products={featured} />
   )
 }
 

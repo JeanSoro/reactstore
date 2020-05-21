@@ -9,7 +9,7 @@ const Header = () => {
   const { user } = useContext(UserContext);
   return (
     <header className="header">
-      <img src={logo} alt="logo-official" className="logo" />
+      {/* <img src={logo} alt="logo-official" className="logo" /> */}
       <nav>
         <ul>
           <div>

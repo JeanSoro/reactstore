@@ -8,7 +8,7 @@ const Home = () => {
     <>
       <Hero>
         <Link to="/products" className="btn btn-primary btn-hero">
-          Our Products
+          Discover
         </Link>
       </Hero>
       <FeaturedProducts />

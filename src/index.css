@@ -3,7 +3,7 @@
 Fonts
 ======
 */
-@import url("https://fonts.googleapis.com/css?family=Catamaran:300,400|Kaushan+Script&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&family=Roboto+Slab:wght@300;400&display=swap');
 
 /* 
 ====== 
@@ -15,13 +15,15 @@ Variables
   /* --primaryDarkColor: #4e1d51; */
   --primaryColor: #f15025;
   --primaryDarkColor: #c02c03;
-  --primaryFont: "Catamaran", sans-serif;
-  --slantedFont: "Kaushan Script", cursive;
+  --primaryFont: 'Raleway', sans-serif;
+  --slantedFont: 'Roboto Slab', serif;
   --mainWhite: #fff;
   --offWhite: #f7f7f7;
-  --mainBackground: #ececec;
+  /* --mainBackground: #ececec; */
+  --mainBackground: rgb(15, 15, 15);
   --mainOverlay: rgba(35, 10, 36, 0.4);
-  --mainBlack: #222;
+  /* --mainBlack: #222; */
+  --mainBlack: #fff;
   --mainGrey: #ececec;
   --darkGrey: #afafaf;
   --mainRed: #bd0303;
@@ -62,7 +64,7 @@ h4,
 h5,
 h6 {
   font-family: var(--primaryFont);
-  margin-bottom: 1.25rem;
+  /* margin-bottom: .5rem; */
   letter-spacing: var(--mainSpacing);
 }
 
@@ -115,6 +117,7 @@ Buttons
   cursor: pointer;
   font-size: 0.8rem;
   background: transparent;
+  border-radius: 30px !important;
 }
 
 .btn:hover {
@@ -209,7 +212,7 @@ Hero
   background: linear-gradient(to right,
       rgba(0, 0, 0, 0.7) 50%,
       rgba(255, 255, 255, 0.1)),
-    url("./assets/mainBcg.jpeg") center/cover no-repeat;
+    url("./assets/mainBcg2.jpg") center/cover no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -217,8 +220,12 @@ Hero
 }
 
 .banner {
-  width: var(--smallWidth);
+  width: 55vw;
   max-width: var(--fullWidth);
+  position: relative;
+
+  /* --smallWidth: 85vw;
+  --fullWidth: 1170px; */
 }
 
 .hero h1 {
@@ -227,10 +234,10 @@ Hero
 }
 
 .hero p {
-  font-size: 1.5rem;
+  font-size: 3.5rem;
   font-weight: bold;
   letter-spacing: 3px;
-  margin-bottom: 1.75rem;
+  margin-bottom: 5rem;
 }
 
 .btn-hero {
@@ -240,6 +247,11 @@ Hero
   background: var(--primaryDarkColor);
   border-color: var(--primaryDarkColor);
   color: var(--mainBlack);
+  position: absolute;
+  top: 100%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  left: 25%;
 }
 
 .btn-hero:hover {
@@ -249,19 +261,27 @@ Hero
 @media screen and (min-width: 768px) {
   .banner {
     margin-top: 0;
+    width: 18vw;
+    position: relative;
   }
 
   .hero h1 {
-    font-size: 5.3rem;
+    font-size: 4rem;
   }
 
   .hero p {
     font-size: 2.3rem;
+    margin-bottom: 5rem;
   }
 
   .btn-hero {
     font-size: 1.2rem;
     padding: 1rem 3rem;
+    position: absolute;
+    top: 100%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    left: 10%;
   }
 }
 
@@ -328,7 +348,7 @@ Product List
 }
 
 .product {
-  background: var(--mainWhite);
+  background: var(--mainBackground);
   margin-bottom: 2rem;
   box-shadow: var(--lightShadow);
   transition: var(--mainTransition);
@@ -343,7 +363,7 @@ Product List
 
 .img-container {
   padding: 3rem;
-  background: rgba(255, 255, 255, 0.5);
+  /* background: rgba(255, 255, 255, 0.5); */
   position: relative;
   /* height: 5rem; */
 }
@@ -359,7 +379,7 @@ Product List
 
 .product-link {
   position: absolute;
-  top: 50%;
+  top: 87%;
   left: 50%;
   transform: translate(-50%, -50%);
   opacity: 0;
@@ -376,6 +396,7 @@ Product List
   letter-spacing: var(--mainSpacing);
   display: grid;
   grid-template-rows: 1fr auto;
+  background: var(--mainBackground);
 }
 
 .product-title {
@@ -383,6 +404,7 @@ Product List
   font-weight: bold;
   font-size: 0.8rem;
   margin-bottom: 0.5rem;
+  color: var(--mainWhite);
 }
 
 .product-price {
@@ -419,15 +441,18 @@ Single Product
   text-transform: capitalize;
   font-size: 2.3rem;
   letter-spacing: var(--mainSpacing);
+  margin-bottom: .5rem;
 }
 
 .single-product h2 {
   color: var(--primaryColor);
+  margin-bottom: 2rem;
 }
 
 .single-product p {
   line-height: 2;
   letter-spacing: 1px;
+  margin-bottom: 3rem;
 }
 
 @media screen and (min-width: 992px) {
@@ -618,6 +643,7 @@ Login Button
   letter-spacing: 2px;
   transition: var(--mainTransition);
   font-weight: 300;
+  color: var(--mainWhite);
 }
 
 .login-btn:hover {
@@ -731,7 +757,7 @@ Scroll Button
   right: 1.5rem;
   bottom: 1.5rem;
   background: var(--mainBlack);
-  color: var(--mainWhite);
+  color: black;
   z-index: -100;
   opacity: 0;
   transition: var(--mainTransition);
@@ -840,6 +866,7 @@ Filters Section
   padding: 0.2rem;
   background: transparent;
   border-radius: var(--mainBorderRadius);
+  color: white;
 }
 
 .filters-form select {
@@ -847,6 +874,7 @@ Filters Section
   font-size: 0.8rem;
   border-color: var(--mainBlack);
   border-width: 0.5px;
+  color: white;
 }
 
 .filters-form input[type="checkbox"] {

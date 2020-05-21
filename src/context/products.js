@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect, createContext } from 'react';
 import axios from 'axios';
-import url from '../utils/URL'
+import url from '../utils/URL';
+import { socialData } from './socialData';
 
 import { getFeaturedProducts, flattenProducts, paginate } from '../utils/helpers';
 
@@ -16,6 +17,7 @@ const ProductProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState([]);
   const [featured, setFeaturedProducts] = useState([]);
+  const [links, setLinks] = useState(socialData)
 
   //extra state values
   const [sorted, setSorted] = useState([]);
@@ -42,8 +44,12 @@ const ProductProvider = ({ children }) => {
       setLoading(false);
     })
 
-    // return () => { }
+    return () => { }
   }, []);
+
+  const changePage = index => {
+    setPage(index)
+  }
 
   // -------------------------------------------------------------------------------
 
@@ -84,16 +90,13 @@ const ProductProvider = ({ children }) => {
       })
     }
 
+
     //getting default values
     setPage(0);
     setSorted(paginate(newProducts))
   }, [filters, products]);
 
   // -------------------------------------------------------------------------------
-
-  const changePage = index => {
-    setPage(index)
-  }
 
   const updateFilters = e => {
     const type = e.target.type;
@@ -114,7 +117,7 @@ const ProductProvider = ({ children }) => {
   // -------------------------------------------------------------------------------
 
   return (
-    <ProductContext.Provider value={{ products, loading, featured, sorted, page, filters, changePage, updateFilters }}>
+    <ProductContext.Provider value={{ products, links, loading, featured, sorted, page, filters, changePage, updateFilters }}>
       {children}
     </ProductContext.Provider>
   )

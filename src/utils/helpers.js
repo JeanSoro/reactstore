@@ -21,7 +21,7 @@ export const getFeaturedProducts = data => {
 
 export const paginate = products => {
 
-  const productsPerPage = 4;
+  const productsPerPage = 12;
   const numberOfPages = Math.ceil(products.length / productsPerPage);
 
   //non destructive slice
@@ -30,6 +30,10 @@ export const paginate = products => {
     const start = index * productsPerPage
     return products.slice(start, start + productsPerPage)
   })
+
+  // const newProducts = Array.from({ length: numberOfPages }, () => {
+  //   return products.splice(0, productsPerPage);
+  // })
 
   return newProducts;
 };

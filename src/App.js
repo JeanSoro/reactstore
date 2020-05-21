@@ -1,5 +1,6 @@
 import React from "react";
 
+
 //----ROUTER
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
@@ -18,6 +19,7 @@ import Header from './components/Header';
 import Alert from './components/Alert';
 import PrivateRoute from './components/PrivateRoute';
 import ScrollButton from './components/ScrollButton';
+// import Footer from './components/Footer';
 
 export default function App() {
   return (
@@ -42,6 +44,7 @@ export default function App() {
         </Route>
         <Route path="*" component={ErrorPage} />
       </Switch>
+      {/* <Footer /> */}
     </Router>
   );
 }
